@@ -1,0 +1,12 @@
+class : ChatMessage
+table : chat_message
+fields: 
+  senderId: int                 
+  receiverId: int               
+  message: String               
+  messageType: String           
+  timestamp: DateTime           
+  isDelivered: bool             
+  isSeen: bool                  
+  isActive: bool   
+  isTyping: bool 

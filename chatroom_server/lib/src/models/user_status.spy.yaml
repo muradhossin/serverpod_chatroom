@@ -1,0 +1,7 @@
+class : UserStatus
+table : user_status
+fields :
+  userId: int                  
+  isOnline: bool                
+  lastSeen: DateTime            
+  isTyping: bool?

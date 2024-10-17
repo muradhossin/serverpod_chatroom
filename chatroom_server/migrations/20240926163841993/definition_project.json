@@ -1,0 +1,19 @@
+{
+  "moduleName": "chatroom",
+  "tables": [],
+  "installedModules": [
+    {
+      "module": "serverpod",
+      "version": "20240516151843329"
+    },
+    {
+      "module": "serverpod_auth",
+      "version": "20240520102713718"
+    },
+    {
+      "module": "chatroom",
+      "version": "20240926160125194"
+    }
+  ],
+  "migrationApiVersion": 1
+}

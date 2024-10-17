@@ -1,0 +1,7 @@
+chatMessage:
+  - getMessages:
+  - handleTypingNotification:
+  - findUserByEmail:
+  - getChatListByUserId:
+example:
+  - hello:

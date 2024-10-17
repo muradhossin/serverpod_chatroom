@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+
+class TypingIndicatorWidget extends StatefulWidget {
+  const TypingIndicatorWidget({Key? key}) : super(key: key);
+
+  @override
+  _TypingIndicatorWidgetState createState() => _TypingIndicatorWidgetState();
+}
+
+class _TypingIndicatorWidgetState extends State<TypingIndicatorWidget>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _barOneAnimation;
+  late Animation<double> _barTwoAnimation;
+  late Animation<double> _barThreeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 600),
+    )..repeat(reverse: true);
+
+    _barOneAnimation = Tween<double>(begin: 5, end: 20).animate(
+      CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.33)),
+    );
+    _barTwoAnimation = Tween<double>(begin: 5, end: 20).animate(
+      CurvedAnimation(parent: _controller, curve: Interval(0.33, 0.66)),
+    );
+    _barThreeAnimation = Tween<double>(begin: 5, end: 20).animate(
+      CurvedAnimation(parent: _controller, curve: Interval(0.66, 1.0)),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10.0, bottom: 8.0),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Container(
+          width: 60, // Fixed width of the container
+          height: 30, // Fixed height of the container
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Container(
+                    height: _barOneAnimation.value,
+                    width: 6, // Fixed width for each bar
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                  );
+                },
+              ),
+              AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Container(
+                    height: _barTwoAnimation.value,
+                    width: 6, // Fixed width for each bar
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                  );
+                },
+              ),
+              AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Container(
+                    height: _barThreeAnimation.value,
+                    width: 6, // Fixed width for each bar
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
